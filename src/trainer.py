@@ -60,9 +60,7 @@ class Trainer:
             i = 0
             while not done and i < 100:  # 15 seconds timeout
                 orient, depth_map = test_env.orient, test_env.depth_map
-                # if orient.device.type == "mps":
-                #     orient = orient.cpu()
-                orients.append(orient.numpy().copy())
+                orients.append(orient.cpu().numpy().copy())
 
                 mean, std = self.actor(orient, depth_map)
                 dist = torch.distributions.Normal(mean, std)

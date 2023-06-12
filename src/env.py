@@ -148,9 +148,7 @@ class Env:
 
         reward_goal = W_GOAL * (orig_dist - next_dist)
 
-        # if reward_goal.device.type == "mps":
-        #     reward_goal = reward_goal.cpu()
-        rewards += reward_goal.numpy()
+        rewards += reward_goal.cpu().numpy()
 
         return (self.orient, self.depth_map), rewards, done
 
